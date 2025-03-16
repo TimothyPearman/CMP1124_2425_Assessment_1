@@ -10,6 +10,8 @@ namespace CMP1124_2425_Assessment_1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World!");
+            Console.ReadKey();
         }
     }
 }
