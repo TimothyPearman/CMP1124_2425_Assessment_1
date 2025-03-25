@@ -80,6 +80,7 @@ namespace CMP1124_2425_Assessment_1
             List<int> list = new List<int>();
 
             // Read all lines from the file
+            // Shares files must be in [\CMP1124_2425_Assessment_1\bin\Debug\]
             var lines = File.ReadAllLines(filename);
 
 
@@ -303,9 +304,9 @@ namespace CMP1124_2425_Assessment_1
                 Shares[6].Add(item);
             }
 
-            Task2(Shares, order, sort, 2);
+            //Task2(Shares, order, sort, 2);
             //Task3(Shares, order, search, 2); // task 3 is run by task 4, just for debugging
-            Task4(Shares, order, search, 2);
+            //Task4(Shares, order, search, 2);
         }
 
         static public void Task7(List<List<int>> Shares, Order order, Sort sort, Search search)
