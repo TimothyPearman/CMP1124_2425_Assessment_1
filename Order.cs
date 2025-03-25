@@ -17,8 +17,6 @@ namespace CMP1124_2425_Assessment_1
         }
         public void Output(List<int> data, int target = 1)
         {
-            //Console.WriteLine("Output");
-            //Console.WriteLine("Sorted");
             int index = 1;
             for (int i = target -1; i < data.Count; i += target)  // Start from index 9 (10th element)
             {

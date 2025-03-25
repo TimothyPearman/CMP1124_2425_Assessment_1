@@ -22,11 +22,8 @@ namespace CMP1124_2425_Assessment_1
 
             for (int i = 0; i < data.Count; i++)
             {
-                Console.WriteLine($"element {i + 1}: {data[i]} ");
-
                 if (data[i] == target)
                 {
-                    //Console.WriteLine($"target value found at {i}");
                     index.Add(i);
                 }
             }

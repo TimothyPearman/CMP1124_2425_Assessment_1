@@ -44,8 +44,7 @@ namespace CMP1124_2425_Assessment_1
 
             return data;
         }
-        public void MergeSortRecursive(List<int> data, List<int> temp, int low, int
-        high)
+        public void MergeSortRecursive(List<int> data, List<int> temp, int low, int high)
         // pre: 0 <= low <= high < data.length
         // post: values in data[low … high] are in ascending order
         {

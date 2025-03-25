@@ -1,7 +1,7 @@
 ﻿/* 
 Program Name: Stock Exchange Volume Analyzer 
 Author: Timothy Pearman (28856139)
-Date: [Submission Date] 
+Date: 25/3/25
   
 Description: 
 - This program is a console-based application that reads, sorts, and 
@@ -27,8 +27,17 @@ Expected Output:
 - Search results including value locations or nearest available values. 
 
 Implemented Algorithms: 
-- Sorting: Bubble Sort, Quick Sort. 
-- Searching: Linear Search, Binary Search. 
+- Searching: 
+    Linear Search [LinearSearch()], 
+    Binary Search [BinarySearch()]. 
+- Sorting: 
+    Bubble Sort [BubbleSort()], 
+    Merge Sort [MergeSort(), MergeSortRecursive(), Merge()], 
+    Quick Sort [QuickSort(), Quick_Sort()], 
+    Insertion Sort [InsertionSort()].
+- Ordering: 
+    Ascending [Ascending()], 
+    Descending [Descending()].
 */
 
 using System;
@@ -46,6 +55,7 @@ namespace CMP1124_2425_Assessment_1
     {
         static void Main(string[] args)
         {
+            // two dimensional list to hold lists of data held in the shares
             List<List<int>> Shares = new List<List<int>>();
 
             Order order = new Order();
@@ -118,6 +128,7 @@ namespace CMP1124_2425_Assessment_1
             Console.WriteLine("\nShare_3_256 Descending order, 10th values\n");
             order.Output(order.Descending(sort.InsertionSort(Shares[2])), 10);
 
+            //task 5,6,7 version
             if (version > 0)
             {
                 Console.WriteLine("\nShare_1_2048 Ascending order, 50th values\n");
@@ -135,6 +146,7 @@ namespace CMP1124_2425_Assessment_1
                 order.Output(order.Descending(sort.InsertionSort(Shares[5])), 50);
             }
 
+            //task 6,7 version
             if (version > 1)
             {
                 Console.WriteLine("\nShare_1_256 merged with Share_3_256 Ascending order, 10th values\n");
@@ -144,6 +156,7 @@ namespace CMP1124_2425_Assessment_1
                 order.Output(order.Descending(sort.MergeSort(Shares[6])), 10);
             }
 
+            //task 7 version
             if (version > 2)
             {
                 Console.WriteLine("\nShare_1_2048 merged with Share_3_2048 Ascending order, 50th values\n");
@@ -165,31 +178,35 @@ namespace CMP1124_2425_Assessment_1
             int userInputArray;
             int userInputTarget;
 
+            // get array choice from user
             Console.WriteLine("\nWhich array would you like to search?");
             Console.WriteLine("Share_1_256.txt: 1");
             Console.WriteLine("Share_2_256.txt: 2");
             Console.WriteLine("Share_3_256.txt: 3");
-
+            //task 5,6,7 version
             if (version > 0)
             {
                 Console.WriteLine("Share_1_2048.txt: 4");
                 Console.WriteLine("Share_2_2048.txt: 5");
                 Console.WriteLine("Share_3_2048.txt: 6");
             }
+            //task 6,7 version
             if (version > 1)
             {
                 Console.WriteLine("Share_1_256 merged with Share_3_256: 7");
             }
+            //task 7 version
             if (version > 2)
             {
                 Console.WriteLine("Share_1_2048 merged with Share_3_2048: 8");
             }
-
             userInputArray = Convert.ToInt32(Console.ReadLine());
 
+            // get target choice from user
             Console.WriteLine("Which value would you like to search for?");
             userInputTarget = Convert.ToInt32(Console.ReadLine());
 
+            // search for target in array
             data = search.BinarySearch(Shares[userInputArray - 1], userInputTarget);
             if (data.Count == 0)
             {
@@ -210,6 +227,7 @@ namespace CMP1124_2425_Assessment_1
 
             var results = Task3(Shares, order, search, version);
 
+            // false = target not found during task 3 search
             if (results.Item1 == false)
             {
                 Console.WriteLine("Searching for nearest values");
@@ -224,8 +242,9 @@ namespace CMP1124_2425_Assessment_1
                 bool searching = true;
                 while (searching)
                 {
-                    dataLow = search.BinarySearch(Shares[results.Item2 - 1], targetLow);
-                    dataHigh = search.BinarySearch(Shares[results.Item2 - 1], targetHigh);
+                    //search for nearest values above and below target
+                    dataLow = search.LinearSearch(Shares[results.Item2 - 1], targetLow);
+                    dataHigh = search.LinearSearch(Shares[results.Item2 - 1], targetHigh);
 
                     if (dataLow.Count() == 0)
                     {
@@ -271,7 +290,7 @@ namespace CMP1124_2425_Assessment_1
         static public void Task5(List<List<int>> Shares, Order order, Sort sort, Search search)
         {
             Task2(Shares, order, sort, 1);
-            //Task3(Shares, order, search, 1);
+            //Task3(Shares, order, search, 1); // task 3 is run by task 4, just for debugging
             Task4(Shares, order, search, 1);
         }
 
@@ -284,9 +303,9 @@ namespace CMP1124_2425_Assessment_1
                 Shares[6].Add(item);
             }
 
-            //Task2(Shares, order, sort, 2);
-            //Task3(Shares, order, search, 2);
-            //Task4(Shares, order, search, 2);
+            Task2(Shares, order, sort, 2);
+            //Task3(Shares, order, search, 2); // task 3 is run by task 4, just for debugging
+            Task4(Shares, order, search, 2);
         }
 
         static public void Task7(List<List<int>> Shares, Order order, Sort sort, Search search)
@@ -301,7 +320,7 @@ namespace CMP1124_2425_Assessment_1
             }
 
             Task2(Shares, order, sort, 3);
-            //Task3(Shares, order, search, 3);
+            //Task3(Shares, order, search, 3); // task 3 is run by task 4, just for debugging
             Task4(Shares, order, search, 3);
         }
     }
